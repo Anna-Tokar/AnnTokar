@@ -1,0 +1,298 @@
+clear  % Deleting all variables
+
+% Zero, single, random matrices were considered in the previous work. 
+% So I decided to consider special matrices:
+
+
+% Special matrices
+
+% 1
+    % Companion matrix: 
+        % EX1 = compan(A) returns the corresponding companion matrix 
+        % first row is -A(2:n)/A(1), 
+        % A - vector of polynomial coefficients.
+            A = [1 -1 0 -13 8]; 
+        % Attention! Signs are changing (first row = -A(2:n)):
+            EX1 = compan(A)
+
+% 2
+    % Hadamard matrix:
+        % Hadamard matrices - matrices of 1's and -1's 
+        % (columns orthogonal): H'*H = n*I
+        % [n n]=size(H), I = eye(n,n).
+    
+        % Attention! Size is an even number:
+            EX2 = hadamard(4)
+
+% 3
+    % Hankel matrix:
+        % hankel(a) - returns a square matrix
+        % a - first column of the matrix, 
+        % and the elements are zero below the main anti-diagonal.
+            a = [5 6 7 8];
+            EX3_1 = hankel(a)
+    % hankel(a,r) returns a matrix (mb not square) with a 
+    % as its first column and r as its last row.
+            a1 = [-3 18 -9];
+        % Attention! If the last element of a differs 
+        % from the first element of r, it will issue a warning!
+            r = [-9 2 3 4 5 -3];
+            EX3_2 = hankel(a1, r)
+
+% 4
+    % Hilbert matrix:
+        % The elements are given by EX(i,j) = 1/(i + j – 1):
+        EX4 = hilb(4)
+
+% 5
+    % Magic square:
+        % EX5 = magic(n) returns an n-by-n matrix constructed 
+        % from the integers 1 through n^2 (equal row and column sums).
+        EX5 = magic(5)
+
+% 6
+    % Pascal matrix:
+        % EX6 - P is a symmetric positive definite matrix 
+        % with integer entries taken from Pascal's triangle.
+        EX6 = pascal(6)
+
+% 7
+    % Rosser matrix:
+        % The matrix is 8-by-8 with integer elements.
+        EX7 = rosser
+
+% 8
+    % Toeplitz matrix:
+        % EX8_1 = toeplitz(r) - the symmetric Toeplitz matrix.
+        % all elements along a diagonal have the same value.
+            r = [1 2 3];
+            EX8_1 = toeplitz(r)
+        % toeplitz(c,r) - nonsymmetric Toeplitz matrix with 
+        % c as its first column 
+        % and r as its first row.
+            % Attention! If the first elements of c and r differ, 
+            % toeplitz issues a warning!
+               c = [1  2  3  -4];
+               r = [1 5 6 8];
+               EX8_2 = toeplitz(c,r)
+
+% 9
+    % Vandermonde matrix:
+        % vander(v) - its columns are powers of the vector v.
+            v = 1:5;
+            EX9 = vander(v)
+
+% 10
+    % Wilkinson's eigenvalue test matrix
+        % Symmetric, tridiagonal matrix with pairs 
+        % of nearly equal eigenvalues.
+           EX10 = wilkinson(5)
+
+
+
+% Concatenating Matrices:
+    % vectors:
+
+        % concatenate two row vectors: 
+        A = zeros(1,4);
+        B = randi([1, 5],1,4);
+        CONCAT_1 = [A B]
+
+        % To arrange A and B as two rows of a matrix - semicolon.
+        CONCAT_2 = [A; B]
+    
+    % matrices - compatible sizes:
+
+        % When you concatenate matrices horizontally -
+        % the same number of rows.
+        A = [1 2 3; 5 6 7];
+        B = zeros(2,2);
+        CONCAT_3_1 = [A B]
+        
+            % alternative way to concatenate matrices - horzcat, 
+            % horizontally concatenates two compatible input matrices.
+            CONCAT_3_2 = horzcat(A,B)
+
+        % When you concatenate them vertically -
+        % the same number of columns.
+        A = [1 2 3; 5 6 7];
+        B = ones(1,3);
+        CONCAT_4 = [A; B]
+
+    % Using cat:
+     
+       % Horizontal Mergingс:
+       A=[1 2; 3 4];
+       B=[5 6 7; 8 9 10];
+       CONCAT_5 = cat(2,A,B)
+       
+       % Vertical Mergingс:
+       M3=[1 2 3];
+       M4=[5 6 7; 8 9 10];
+       CONCAT_6 = cat(1,M3,M4)
+
+       % Adding to a "stack":
+       A =[1 2; 3 4];
+       B =[5 6; 8 9];
+       CONCAT_7 = cat(3,A,B)    
+    
+
+
+% Removing Rows or Columns from a Matrix:
+     % to set that row or column equal [].
+
+         % removing a row:
+         REM_1 = randi([2, 6], 4, 4)
+         REM_1(2,:) = []
+
+         % removing a colomn:
+         REM_2 = randi([10, 20], 3, 3)
+         REM_2(:,3) = []
+         
+         % removing blocks
+         REM_3 = rand(3,3,3)
+         REM_3(:,:,2) = []
+
+
+
+% Create diagonal matrix or get diagonal elements of matrix:
+
+    % DIAG_1 = diag(A) - square diagonal matrix 
+    % with the elements of vector A on the main diagonal.
+        A = [2 1 -1 -2 -5];
+        DIAG_1 = diag(A)
+
+    % DIAG_2 = diag(A,k) places the elements of vector A 
+    % on the diagonal:
+       % k=0 represents the main diagonal, 
+       % k>0 is above the main diagonal 
+       % k<0 is below the main diagonal.
+        DIAG_2_1 = diag(A,0)
+        DIAG_2_2 = diag(A,1)
+        DIAG_2_3 = diag(A,-3)
+
+    % DIAG_3 = diag(A) - column vector of the main diagonal elements of A.
+        A = randi(10,6)
+        DIAG_3_1 = diag(A)
+
+        % Get the elements on the first subdiagonal (k=-1) of A:
+        DIAG_3_2 = diag(A,-1)
+
+    % Calling diag twice - diagonal matrix composed 
+    % of the diagonal elements of the original matrix.
+        DIAG_4 = diag(diag(A))
+
+
+% Triangular matrices:
+
+    % Upper triangular part of matrix:
+        % TRIAN_1 = triu(A) - upper triangular portion of matrix A.
+            A = ones(3, 4)
+            TRIAN_1 = triu(A)
+
+        % TRIAN_2 = triu(A,k) - elements 
+        % on above the k diagonal of A.
+            TRIAN_2 = triu(A,2)
+
+    % Lower triangular part of matrix:
+        % TRIAN_3 = tril(A) - lower triangular portion of matrix A.
+            A = randi([1, 10], 3, 4)
+            TRIAN_3 = tril(A)
+
+        % TRIAN_4 = tril(A,k) - elements 
+        % on below the k diagonal of A.
+            TRIAN_4 = tril(A,-2) 
+
+
+% Block diagonal matrix:
+
+    % BLOCK_DIAG = blkdiag(A1,...,AN) - block diagonal - 
+    % puts the matrices under each other relative 
+    % to the last right element.
+        A1 = ones(2,2);
+        A2 = 2*ones(3,2);
+        A3 = 3*ones(2,3);
+        % the rest of the elements around the zeros:
+        BLOCK_DIAG = blkdiag(A1,A2,A3)
+
+% Editing matrices:
+ 
+
+    % rot90 
+        % EDIT_1_1 = rot90(A) rotates array A counterclockwise 
+        % by 90 degrees:
+            A=[1 2 3];
+            EDIT_1_1 = rot90(A)
+
+        % EDIT_1_2 = rot90(A,k) rotates array A counterclockwise 
+        % by k*90 degrees, where k is an integer:
+            A=[3 2 1];
+        % counterclockwise!
+            EDIT_1_2 = rot90(A, 2)
+    
+
+    % flip    
+        % Flip order of elements:
+            % If A is vector, then flip(A) 
+            % reverses the order of the elements along the length of the vector.
+                 A=[3 2 1]
+                 EDIT_2_1 = fliplr(A)
+
+            % If A is a matrix, then flip(A) 
+            % reverses the elements in each column.
+                A=[10 2 3; 40 5 6; 70 8 9]
+                EDIT_2_2 = fliplr(A)
+
+
+    % reshape
+        % EDIT_3_1 = reshape(A,sz) reshapes A 
+        % using the size vector, sz, to define size(B).
+                A = [2, 5, 7, 8, -9, 12]
+            % Attention! The number of elements of A 
+            % must match the size of the new matrix 
+            % (6 elements = 3*2 matrix):
+                EDIT_3_1 = reshape(A,[3,2])
+
+        % EDIT_3_2 = reshape(A,sz1,...,szN) reshapes A into 
+        % a sz1-by-...-by-szN array  
+        % You can specify a single dimension size of []:
+                A = magic(6)
+            % Attention! The number of elements and array
+                EDIT_3_2 = reshape(A,[],4)
+                EDIT_3_3 = reshape(A,2,[])
+
+
+    % repmat
+        % Repeat copies of array:
+            % EDIT_4_1 = repmat(A,n) - array containing n copies 
+            % of A in the row and column dimensions.
+                    A = triu(ones(2, 3))
+                % Attention! Repetition both by rows and by columns:
+                    EDIT_4_1 = repmat(A,2)
+
+            % EDIT_4_2 = repmat(A,r1,...,rN) - array with repetition 
+            % of A as a block according to the dimensions r1,...,rN.
+                    A = tril(ones(2, 2))
+                % You can write (A,[2 3 2])
+                    EDIT_4_2 = repmat(A, 2, 3, 2)
+
+
+% Visualize sparsity pattern of matrix:
+    % spy 
+    % spy(S) plots the sparsity pattern of matrix S. 
+    % Nonzero values are colored while zero values are white. 
+    % The plot displays the number of nonzeros in the matrix, 
+    % nz = nnz(S).
+
+            B = triu(ones(4, 4));
+            spy(B)
+            B = [1 -1 0 -13 8]; 
+            A = compan(B); % the first example in special matrices
+            spy(A)
+        % additionally specifies LineSpec 
+        % to give the marker symbol and color to use in the plot.
+            spy(A,'d')
+            spy(A,'s')
+        % you can watch them in a special table
+            spy(A,'c')
+            spy(A,'m')
