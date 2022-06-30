@@ -8,10 +8,10 @@ class Matrix {
 private:
 	vector <vector <int> > massive_vector;
 public:
-	// Матрица представляется как массив векторов - одинакового размера
+	// ГЊГ ГІГ°ГЁГ¶Г  ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГїГҐГІГ±Гї ГЄГ ГЄ Г¬Г Г±Г±ГЁГў ГўГҐГЄГІГ®Г°Г®Гў - Г®Г¤ГЁГ­Г ГЄГ®ГўГ®ГЈГ® Г°Г Г§Г¬ГҐГ°Г 
 	Matrix() {
-		// инициализация единичной матрицы
-				// massive_vector - все строки; massive_vector[0] - доступ к отдельной строке
+		// ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГҐГ¤ГЁГ­ГЁГ·Г­Г®Г© Г¬Г ГІГ°ГЁГ¶Г»
+				// massive_vector - ГўГ±ГҐ Г±ГІГ°Г®ГЄГЁ; massive_vector[0] - Г¤Г®Г±ГІГіГЇ ГЄ Г®ГІГ¤ГҐГ«ГјГ­Г®Г© Г±ГІГ°Г®ГЄГҐ
 		massive_vector.push_back({});
 		massive_vector.push_back({});
 		massive_vector.push_back({});
@@ -31,7 +31,7 @@ public:
 	Matrix(const Matrix& other) { massive_vector = other.massive_vector; }
 	~Matrix() {};
 
-// получение количества строк и столбцов матрицы
+// ГЇГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ  Г±ГІГ°Г®ГЄ ГЁ Г±ГІГ®Г«ГЎГ¶Г®Гў Г¬Г ГІГ°ГЁГ¶Г»
 	int get_rows() { return massive_vector.size(); }
 	int get_column() { return massive_vector[0].size(); }
 
@@ -49,14 +49,14 @@ public:
 //==
 	bool operator == (Matrix& other)
 	{
-		// 1 матрица
+		// 1 Г¬Г ГІГ°ГЁГ¶Г 
 		int rows = this->get_rows(), column = this->get_column();
-		// 2 матрица
+		// 2 Г¬Г ГІГ°ГЁГ¶Г 
 		int rows1 = other.get_rows(), column1 = other.get_column();
-		// если не равны размеры
+		// ГҐГ±Г«ГЁ Г­ГҐ Г°Г ГўГ­Г» Г°Г Г§Г¬ГҐГ°Г»
 		if ((rows != rows1) || (column != column1)) { return false; }
 		else {
-			// если равны идем по строкам (вектор векторов)
+			// ГҐГ±Г«ГЁ Г°Г ГўГ­Г» ГЁГ¤ГҐГ¬ ГЇГ® Г±ГІГ°Г®ГЄГ Г¬ (ГўГҐГЄГІГ®Г° ГўГҐГЄГІГ®Г°Г®Гў)
 			for (int i = 0; i < rows; i++) {
 				if (massive_vector[i] != other.massive_vector[i]) { return false; }
 			}
@@ -70,11 +70,11 @@ public:
 	vector <int> operator[] (int i) { return this->massive_vector[i]; }
 //+
 	Matrix operator + (Matrix& other) {
-		// 1 матрица
+		// 1 Г¬Г ГІГ°ГЁГ¶Г 
 		int rows = this->get_rows(), column = this->get_column();
-		// 2 матрица
+		// 2 Г¬Г ГІГ°ГЁГ¶Г 
 		int rows1 = other.get_rows(), column1 = other.get_column();
-		// проверяем размерность
+		// ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ Г°Г Г§Г¬ГҐГ°Г­Г®Г±ГІГј
 		if ((rows != rows1) or (column != column1)) { throw 1; }
 		else {
 			Matrix our_matr = *this;
@@ -88,9 +88,9 @@ public:
 	}
 //-
 	Matrix operator - (Matrix& other) {
-		// матрица 1
+		// Г¬Г ГІГ°ГЁГ¶Г  1
 		int rows = this->get_rows(), column = this->get_column();
-		// матрица 2
+		// Г¬Г ГІГ°ГЁГ¶Г  2
 		int rows1 = other.get_rows(), column1 = other.get_column();
 		if ((rows != rows1) or (column != column1)) { throw 1; }
 		else {
@@ -105,20 +105,20 @@ public:
 	}
 //*
 	vector<int> operator * (vector<int> other) {
-		// количество столбцов одной матрицы должно быть равно количеству строк другой!
+		// ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ®Г«ГЎГ¶Г®Гў Г®Г¤Г­Г®Г© Г¬Г ГІГ°ГЁГ¶Г» Г¤Г®Г«Г¦Г­Г® ГЎГ»ГІГј Г°Г ГўГ­Г® ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГі Г±ГІГ°Г®ГЄ Г¤Г°ГіГЈГ®Г©!
 		if (this->massive_vector[0].size() != other.size()) { throw 1; }
 
 		int rows = this->get_rows(), column = this->get_column();
 		vector <int> res_vec;
 
 		for (int i = 0; i < rows; i++) {
-			// обнуляем "складывательную" строку
+			// Г®ГЎГ­ГіГ«ГїГҐГ¬ "Г±ГЄГ«Г Г¤Г»ГўГ ГІГҐГ«ГјГ­ГіГѕ" Г±ГІГ°Г®ГЄГі
 			int res = 0;
 			for (int j = 0; j < column; j++) {
-				// как раз перемножаем строку на столбец и складываем
+				// ГЄГ ГЄ Г°Г Г§ ГЇГҐГ°ГҐГ¬Г­Г®Г¦Г ГҐГ¬ Г±ГІГ°Г®ГЄГі Г­Г  Г±ГІГ®Г«ГЎГҐГ¶ ГЁ Г±ГЄГ«Г Г¤Г»ГўГ ГҐГ¬
 				res += (massive_vector[i][j] * other[j]);
 			}
-			// как только закончили с одной строкой - добавляем в вектор
+			// ГЄГ ГЄ ГІГ®Г«ГјГЄГ® Г§Г ГЄГ®Г­Г·ГЁГ«ГЁ Г± Г®Г¤Г­Г®Г© Г±ГІГ°Г®ГЄГ®Г© - Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Гў ГўГҐГЄГІГ®Г°
 			res_vec.push_back(res);
 		}
 		return res_vec;
@@ -135,28 +135,28 @@ public:
 		return out;
 	}
 
-	// инициализация единичной матрицы
+	// ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГҐГ¤ГЁГ­ГЁГ·Г­Г®Г© Г¬Г ГІГ°ГЁГ¶Г»
 	void matr_to_ones() {
 		int rows = this->get_rows(), column = this->get_column();
-		// если матрица не правильная
+		// ГҐГ±Г«ГЁ Г¬Г ГІГ°ГЁГ¶Г  Г­ГҐ ГЇГ°Г ГўГЁГ«ГјГ­Г Гї
 		if (rows != column) {
 			if (column > rows) {
-				// удаляем из каждой строки
+				// ГіГ¤Г Г«ГїГҐГ¬ ГЁГ§ ГЄГ Г¦Г¤Г®Г© Г±ГІГ°Г®ГЄГЁ
 				for (int i = 0; i < rows; i++) {
-					//удаляем в строке начиная с нужного размера - rows
+					//ГіГ¤Г Г«ГїГҐГ¬ Гў Г±ГІГ°Г®ГЄГҐ Г­Г Г·ГЁГ­Г Гї Г± Г­ГіГ¦Г­Г®ГЈГ® Г°Г Г§Г¬ГҐГ°Г  - rows
 					massive_vector[i].erase(massive_vector[i].begin() + rows, massive_vector[i].end());
 				}
-				// меняем размер
+				// Г¬ГҐГ­ГїГҐГ¬ Г°Г Г§Г¬ГҐГ°
 				column = rows;
 			}
 			else {
-				// убираем лишние строки начиная с нужного размера - column
+				// ГіГЎГЁГ°Г ГҐГ¬ Г«ГЁГёГ­ГЁГҐ Г±ГІГ°Г®ГЄГЁ Г­Г Г·ГЁГ­Г Гї Г± Г­ГіГ¦Г­Г®ГЈГ® Г°Г Г§Г¬ГҐГ°Г  - column
 				massive_vector.erase(massive_vector.begin() + column, massive_vector.end());
-				// меняем размер
+				// Г¬ГҐГ­ГїГҐГ¬ Г°Г Г§Г¬ГҐГ°
 				rows = column;
 			}
 		}
-		// меняем значения элементов
+		// Г¬ГҐГ­ГїГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГї ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < column; j++) {
 				if (i == j) { massive_vector[i][j] = 1; }
@@ -167,7 +167,7 @@ public:
 		}
 	}
 
-// проверка, что матрица является единичной
+// ГЇГ°Г®ГўГҐГ°ГЄГ , Г·ГІГ® Г¬Г ГІГ°ГЁГ¶Г  ГїГўГ«ГїГҐГІГ±Гї ГҐГ¤ГЁГ­ГЁГ·Г­Г®Г©
 	bool is_ones() {
 		Matrix temp_matr = *this;
 		temp_matr.matr_to_ones();
@@ -175,7 +175,7 @@ public:
 		return (temp_matr == *this) ? true : false;
 	}
 
-// получение транспонированной матрицы
+// ГЇГ®Г«ГіГ·ГҐГ­ГЁГҐ ГІГ°Г Г­Г±ГЇГ®Г­ГЁГ°Г®ГўГ Г­Г­Г®Г© Г¬Г ГІГ°ГЁГ¶Г»
 	Matrix matrix_transposition() {
 		int rows = this->get_rows(), column = this->get_column();
 		if (rows != column) { throw 1; }
