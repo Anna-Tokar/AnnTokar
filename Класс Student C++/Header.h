@@ -7,15 +7,15 @@ private:
 	std::string fio;
 	int kyrs;
 	int grup;
-	int points[3];  // оценки
+	int points[3];  // Г®Г¶ГҐГ­ГЄГЁ
 
 public:
-	//конструкторы, деконструктор
+	//ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г», Г¤ГҐГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 	Student();
 	Student(std::string name, int k, int gr, int* p);  
-	// p берет 3 значения
-	// если баллов >100 - оставит 100
-	// елси < 0 - выведет 0
+	// p ГЎГҐГ°ГҐГІ 3 Г§Г­Г Г·ГҐГ­ГЁГї
+	// ГҐГ±Г«ГЁ ГЎГ Г«Г«Г®Гў >100 - Г®Г±ГІГ ГўГЁГІ 100
+	// ГҐГ«Г±ГЁ < 0 - ГўГ»ГўГҐГ¤ГҐГІ 0
 	Student(const Student& other);
 	~Student() {};
 
@@ -23,7 +23,7 @@ public:
 	friend std::ostream& operator << (std::ostream& out, const Student& st);
 	friend std::istream& operator >> (std::istream& in, Student& st);
 
-	//методы
+	//Г¬ГҐГІГ®Г¤Г»
 	std::string get_fio();
 	int get_kyrs();
 	int get_grup();
@@ -34,10 +34,10 @@ public:
 	void set_grup(int gr);
 	void set_points(int* p);
 
-	void rating();  // баллы переводит в оценки
-	bool check_exam(int n);  // сдал ли экзамен?
+	void rating();  // ГЎГ Г«Г«Г» ГЇГҐГ°ГҐГўГ®Г¤ГЁГІ Гў Г®Г¶ГҐГ­ГЄГЁ
+	bool check_exam(int n);  // Г±Г¤Г Г« Г«ГЁ ГЅГЄГ§Г Г¬ГҐГ­?
 
-	//операторы
+	//Г®ГЇГҐГ°Г ГІГ®Г°Г»
 	Student& operator = (const Student& stud);
 	bool operator == (const Student& stud);
 	bool operator < (const Student& stud);
