@@ -1,6 +1,6 @@
 #include "Header.h"
 
-// êîíñòğóêòîğû
+// ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã°Ã»
 Student::Student()
 {
 	fio = "none";
@@ -39,10 +39,10 @@ Student::Student(const Student& other) {
 std::ostream& operator<<(std::ostream& out, const Student& st)
 {
 	out << st.fio << '\n';
-	out << "Êóğñ: " << st.kyrs << "\n";
-	out << "Ãğóïïà: " << st.grup << "\n";
-	std::cout << "Áàëëû: \n";
-	for (int i = 0; i < 3; ++i) out << i + 1 << "-ûé ïğåäìåò - " << st.points[i] << '\n';
+	out << "ÃŠÃ³Ã°Ã±: " << st.kyrs << "\n";
+	out << "ÃƒÃ°Ã³Ã¯Ã¯Ã : " << st.grup << "\n";
+	std::cout << "ÃÃ Ã«Ã«Ã»: \n";
+	for (int i = 0; i < 3; ++i) out << i + 1 << "-Ã»Ã© Ã¯Ã°Ã¥Ã¤Ã¬Ã¥Ã² - " << st.points[i] << '\n';
 	return out;
 }
 
@@ -50,20 +50,20 @@ std::istream& operator>>(std::istream& in, Student& st)
 {
 	std::string f;
 	int b;
-	std::cout << "Ââåäèòå ÔÈÎ: ";
+	std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã”ÃˆÃ: ";
 	getline(in, f);
 	st.fio = f;
 
-	std::cout << "Ââåäèòå êóğñ: ";
+	std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ÃªÃ³Ã°Ã±: ";
 	in >> b;
 	st.kyrs = b;
 
-	std::cout << "Ââåäèòå íîìåğ ãğóïïû: ";
+	std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã­Ã®Ã¬Ã¥Ã° Ã£Ã°Ã³Ã¯Ã¯Ã»: ";
 	in >> b;
 	st.grup = b;
 
 	for (int i = 0; i < 3; ++i) {
-		std::cout << "Ââåäèòå áàëëû ïî " << i + 1 << "-îìó ïğåäìåòó: ";
+		std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¡Ã Ã«Ã«Ã» Ã¯Ã® " << i + 1 << "-Ã®Ã¬Ã³ Ã¯Ã°Ã¥Ã¤Ã¬Ã¥Ã²Ã³: ";
 		in >> b;
 		if (b > 100) {
 			st.points[i] = 100;
@@ -78,7 +78,7 @@ std::istream& operator>>(std::istream& in, Student& st)
 	return in;
 }
 
-//ìåòîäû
+//Ã¬Ã¥Ã²Ã®Ã¤Ã»
 std::string Student::get_fio() {
 	return this->fio;
 }
@@ -127,9 +127,9 @@ void Student::rating() {
 			}
 		}
 	}
-	std::cout << "Îöåíêè: \n";
+	std::cout << "ÃÃ¶Ã¥Ã­ÃªÃ¨: \n";
 	for (int i = 0; i < 3; i++) {
-		std::cout << i + 1 << "-é ïğåäìåò: " << r[i] << "\n";
+		std::cout << i + 1 << "-Ã© Ã¯Ã°Ã¥Ã¤Ã¬Ã¥Ã²: " << r[i] << "\n";
 	}
 }
 
@@ -159,8 +159,8 @@ bool Student::operator < (const Student& stud) {
 
 void list(Student* array, int size) {
 	for (int i = 0; i < size; i++) {
-		std::cout << array[i]; // âûâîä êóğñà ãğóïïû è áàëëîâ
-		array[i].rating();  // âûâîä îöåíîê
+		std::cout << array[i]; // Ã¢Ã»Ã¢Ã®Ã¤ ÃªÃ³Ã°Ã±Ã  Ã£Ã°Ã³Ã¯Ã¯Ã» Ã¨ Ã¡Ã Ã«Ã«Ã®Ã¢
+		array[i].rating();  // Ã¢Ã»Ã¢Ã®Ã¤ Ã®Ã¶Ã¥Ã­Ã®Ãª
 		std::cout << "\n";
 	}
 }
@@ -168,7 +168,7 @@ void list(Student* array, int size) {
 Student* commission(Student* array, int& size) {
 	int count = 0;
 	for (int i = 0; i < size; i++) {
-		// ïğîâåğÿåì ıêçàìåíû - åñëè âñå 3 íå ñäàíû - ïëşñóåì
+		// Ã¯Ã°Ã®Ã¢Ã¥Ã°Ã¿Ã¥Ã¬ Ã½ÃªÃ§Ã Ã¬Ã¥Ã­Ã» - Ã¥Ã±Ã«Ã¨ Ã¢Ã±Ã¥ 3 Ã­Ã¥ Ã±Ã¤Ã Ã­Ã» - Ã¯Ã«Ã¾Ã±Ã³Ã¥Ã¬
 		if (!array[i].check_exam(0) && !array[i].check_exam(1) && !array[i].check_exam(2)) count++;
 	}
 
