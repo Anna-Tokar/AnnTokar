@@ -10,7 +10,7 @@ int main() {
 	first_vector[1].push_back(3);
 	first_vector[2].push_back(1);
 	first_vector[2].push_back(2);
-	first_vector[2].push_back(3); // если убираем - сработает нужное исключение в конструкторе
+	first_vector[2].push_back(3); // ГҐГ±Г«ГЁ ГіГЎГЁГ°Г ГҐГ¬ - Г±Г°Г ГЎГ®ГІГ ГҐГІ Г­ГіГ¦Г­Г®ГҐ ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГҐ Гў ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°ГҐ
 	// 1 2 3
 	// 1 2 3
 	// 1 2 3
@@ -30,7 +30,7 @@ int main() {
 	// 1 2 3
 
 // 3*3
-	// проверка суммы
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГіГ¬Г¬Г»
 	cout << "Sum 3*3: \n";
 	try {
 		Matrix vec1(first_vector), vec2(second_vector), sum_matrix;
@@ -41,7 +41,7 @@ int main() {
 		cout << "Error";
 	}
 
-	// проверка разности
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  Г°Г Г§Г­Г®Г±ГІГЁ
 	cout << "Dif 3*3: \n";
 	try {
 		Matrix vec1(first_vector), vec2(second_vector), dif_matrix;
@@ -52,7 +52,7 @@ int main() {
 		cout << "\nError! Different sizes of matrices!";
 	}
 
-	// проверка умножения - по векторам
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї - ГЇГ® ГўГҐГЄГІГ®Г°Г Г¬
 	cout << "Mult 3*3: \n";
 	vector <int> mult_vec{ 1,1,1 }, res_vec;
 	try {
@@ -62,7 +62,7 @@ int main() {
 		for (int i = 0; i < res_vec.size(); i++) {
 			cout << res_vec[i] << "       ";
 		}
-		// мы умножили:
+		// Г¬Г» ГіГ¬Г­Г®Г¦ГЁГ«ГЁ:
 		// 1 2 3    1     1 + 2 + 3    6
 		// 1 2 3 *  1  =  1 + 2 + 3 =  6
 		// 1 2 3    1     1 + 2 + 3    6
@@ -72,7 +72,7 @@ int main() {
 		cout << "\nError! Different sizes of matrices!";
 	}
 
-	// проверка транспонирования матрицы
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  ГІГ°Г Г­Г±ГЇГ®Г­ГЁГ°Г®ГўГ Г­ГЁГї Г¬Г ГІГ°ГЁГ¶Г»
 	cout << endl;
 	Matrix matr_to_transp(first_vector), transposition;
 	transposition = matr_to_transp.matrix_transposition();
@@ -80,12 +80,12 @@ int main() {
 	cout << matr_to_transp << endl;
 	cout << "After transposition: \n";
 	cout << transposition << endl;
-	// проверка равенства
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  Г°Г ГўГҐГ­Г±ГІГўГ 
 	cout << "Are they equal? - " << (matr_to_transp == transposition);
 	cout << "\nAre they no equal? - " << (matr_to_transp != transposition);
 	cout << endl;
 
-	// проверка единичности матрицы
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  ГҐГ¤ГЁГ­ГЁГ·Г­Г®Г±ГІГЁ Г¬Г ГІГ°ГЁГ¶Г»
 	Matrix vec_matr(first_vector);
 	cout << "\nBefore ones: \n";
 	cout << vec_matr;
@@ -95,7 +95,7 @@ int main() {
 	cout << vec_matr;
 	cout << "Is ones? - " <<  vec_matr.is_ones();
 
-	//проверка заполнения единицами матриц
+	//ГЇГ°Г®ГўГҐГ°ГЄГ  Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГї ГҐГ¤ГЁГ­ГЁГ¶Г Г¬ГЁ Г¬Г ГІГ°ГЁГ¶
 	cout << endl;
 	Matrix a, b;
 	cout << "\nOnes matrix a: " << endl;
@@ -133,7 +133,7 @@ int main() {
 	cout << endl;
 
 //3*4
-	// проверка суммы - попытка - тест выброса исключения
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГіГ¬Г¬Г» - ГЇГ®ГЇГ»ГІГЄГ  - ГІГҐГ±ГІ ГўГ»ГЎГ°Г®Г±Г  ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГї
 	cout << "\nSum 3*3: \n";
 	try {
 		Matrix vec3(third_vector), sum_matrix, vec1(first_vector);
@@ -145,7 +145,7 @@ int main() {
 	}
 	cout << endl;
 
-	// проверка разности - попытка - тест выброса исключения
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  Г°Г Г§Г­Г®Г±ГІГЁ - ГЇГ®ГЇГ»ГІГЄГ  - ГІГҐГ±ГІ ГўГ»ГЎГ°Г®Г±Г  ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГї
 	cout << "\nDif 3*3: \n";
 	try {
 		Matrix vec3(third_vector), dif_matrix, vec1(first_vector);
@@ -157,7 +157,7 @@ int main() {
 	}
 	cout << endl;
 
-	// проверка умножения - по векторам
+	// ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї - ГЇГ® ГўГҐГЄГІГ®Г°Г Г¬
 	cout << "\nMult 3*4: \n";
 	vector <int> mult_vec2{ 5,4,3 };
 	//cout << "vec 3: " << vec3 << endl;
@@ -168,7 +168,7 @@ int main() {
 		for (int i = 0; i < res_vec.size(); i++) {
 			cout << res_vec[i] << "       ";
 		}
-		// мы умножили:
+		// Г¬Г» ГіГ¬Г­Г®Г¦ГЁГ«ГЁ:
 	    // 5 6 7   5     5*5 + 6*4 + 7*3   70
 	    // 8 9 1 * 4  =  8*5 + 9*4 + 1*3 = 79
 	    // 2 3 4   3     2*5 + 3*4 + 4*3   34
