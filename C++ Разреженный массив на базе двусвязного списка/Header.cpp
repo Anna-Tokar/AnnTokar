@@ -2,7 +2,7 @@
 #include "Header.h"
 using namespace std;
 
-////Êîíñòðóêòîð ñ ïàðàìåòðîì
+////Конструктор с параметром
 //DoubleList::DoubleList(int val) {
 //	Node* temp = new Node;
 //	temp->data = val;
@@ -12,10 +12,10 @@ using namespace std;
 //	last = temp;
 //}
 
-//Äåñòðóêòîð
+//Деструктор
 DoubleList::~DoubleList() {
 	Node* p, * p1;
-	// óäàëåíèå âñåõ ýëåìåíòîâ ñïèñêà:
+	// удаление всех элементов списка:
 	p = first;
 	while (p)
 	{
@@ -25,23 +25,23 @@ DoubleList::~DoubleList() {
 	}
 }
 
-//Äîáàâëåíèå óçëà â íà÷àëî
+//Добавление узла в начало
 void DoubleList::addFirst(double x) {
 	Node* buf = new Node;
-	buf->data = x;  // ýëåìåíò äàííûõ = x
-	if (!first) {  // íåò ïåðâîãî ýëåìåíòà - óêàçàòåëü íà ñëåäóþùèé - ïîñëåäíèé
+	buf->data = x;  // элемент данных = x
+	if (!first) {  // нет первого элемента - указатель на следующий - последний
 		buf->next = last;
-		last = buf;  // à ïîñëåäíèé óêàçûâàåò íà íîâûé ìàññèâ
+		last = buf;  // а последний указывает на новый массив
 	}
-	else { // íóæíî ñäâèíóòü óêàçàòåëü
-		buf->next = first; // ñëåäóþùèé - íà÷àëî ìàññèâà
-		first->prev = buf; // íà÷àëî ïðåäûäóùåãî - íîâûé ìàññèâ
+	else { // нужно сдвинуть указатель
+		buf->next = first; // следующий - начало массива
+		first->prev = buf; // начало предыдущего - новый массив
 	}
 	first = buf;
 	first->prev = NULL;
 }
 
-//Äîáàâëåíèå óçëà â êîíåö
+//Добавление узла в конец
 void DoubleList::addLast(double x) {
 	Node* buf = new Node;
 	buf->data = x;
@@ -58,21 +58,21 @@ void DoubleList::addLast(double x) {
 	last = buf;
 }
 
-//Ïîëó÷åíèå ïåðâîãî
+//Получение первого
 long DoubleList::getFirst() const {
 	if (first)
 		return first->data;
 	throw 100;
 }
 
-//Ïîëó÷åíèå ïîñëåäíåãî
+//Получение последнего
 double DoubleList::getLast()const {
 	if (first)
 		return last->data;
 	throw 100;
 }
 
-//Óäàëåíèå ãîëîâû
+//Удаление головы
 void DoubleList::delFirst() {
 	if (first) {
 		Node* buf = first;
@@ -83,7 +83,7 @@ void DoubleList::delFirst() {
 	throw 100;
 }
 
-//Óäàëåíèå õâîñòà
+//Удаление хвоста
 void DoubleList::delLast() {
 	if (first) {
 		Node* buf = last;
@@ -95,7 +95,7 @@ void DoubleList::delLast() {
 }
 
 
-//Äîñòóï ê ýëåìåíòàì
+//Доступ к элементам
 double DoubleList::operator [] (long ix) const {
 	Node* current = first;
 	for (int i = 0; i <= ix; i++) {
@@ -116,9 +116,9 @@ void DoubleList::forfunc (long ix, double y) {
 	}
 }
 
-//Âûâåñòè âñå ýëåìåíòû
+//Вывести все элементы
 ostream& operator << (ostream& os, const DoubleList& l) {
-	Node* p = l.first;  // óêàçàòåëü íà íà÷àëî ñïèñêà 
+	Node* p = l.first;  // указатель на начало списка 
 	while (p) {
 		os << *p << " ";
 		p = p->next;
@@ -129,23 +129,23 @@ ostream& operator << (ostream& os, const DoubleList& l) {
 
 //-------------------------------------------------------------------------
 
-//Êîíñòðóêòîð
+//Конструктор
 SparseArray::SparseArray(long s) {
 	size_arr = s;
 	arr = new DoubleList[c * 2];
 }
 
-//Ðàçìåð ìàññèâà
+//Размер массива
 long SparseArray::size() {
 	return size_arr;
 }
 
-//Êîëè÷åñòâî íåïóñòûõ ýëåìåíòîâ
+//Количество непустых элементов
 long SparseArray::notEmpty() {
 	return c;
 }
 
-//Âûâîä íåïóñòûõ ýëåìåíòîâ
+//Вывод непустых элементов
 void SparseArray::showElem() {
 	int i = 1;
 	while (i < c * 2) {
@@ -155,11 +155,11 @@ void SparseArray::showElem() {
 	cout << endl;
 }
 
-double SparseArray::operator [] (long ix) const { //äîñòóï ê ýëåìåíòàì
+double SparseArray::operator [] (long ix) const { //доступ к элементам
 	return arr->operator[](ix);
 }
 
-//Âûâîä ìàññèâà
+//Вывод массива
 ostream& operator << (ostream& out, const SparseArray& array) {
 	int* ind = new int[c];
 	for(int i = 0; i < c; i++)
@@ -189,8 +189,8 @@ ostream& operator << (ostream& out, const SparseArray& array) {
 				out << "0 " << endl;
 				i++;
 			}
-		// öèêë äëÿ ïîèñêà â èñõîäíîì ìàññèâå çíà÷åíèÿ ïî èíäåêñó (êîòîðûé ìû ñîðòèðîâàëè âûøå)
-		int m = 0; // äëÿ çàïèñè çíà÷åíèÿ
+		// цикл для поиска в исходном массиве значения по индексу (который мы сортировали выше)
+		int m = 0; // для записи значения
 		while (array.arr->operator[](m) != ind[k])
 			m = m + 2;
 		out << "{" << ind[k] << "->" << array.arr->operator[](m+1) << " } " << endl;
@@ -203,20 +203,21 @@ ostream& operator << (ostream& out, const SparseArray& array) {
 	return out;
 }
 
-//Ââîä ìàññèâà
+//Ввод массива
 istream& operator >> (istream& in, SparseArray& array) {
-	// i - ïðîõîäèì ïî íåíóëåâûì ÷èñëàì
-	// j - èíäåêñ íåíóëåâûõ ÷èñåë êîòîðûå ìû çàïèñûâàåì
-	// y - ÷èñëî êîòîðîå ââîäèì
-	// k - èíäåêñ äëÿ ïðîâåðêè íà ñëó÷àé ñîâïàäåíèÿ èíäåêñîâ
-	// kol - êîëè÷åñòâî ââåäåíûõ èíäåêñîâ è çíà÷åíèé 
+	// i - проходим по ненулевым числам
+	// j - индекс ненулевых чисел которые мы записываем
+	// y - число которое вводим
+	// k - индекс для проверки на случай совпадения индексов
+	// kol - количество введеных индексов и значений 
 	double i = 0, j, y; 
 	int k = 0, kol = 0; 
 	bool flag;
-	cout << "Ââåäèòå ýëåìåíòû, îòëè÷íûå îò 0:" << endl;
-	j = rand() % (array.size_arr - 1);
+	cout << "Введите элементы (" << c << "), отличные от 0:" << endl;
+	//j = rand() % (array.size_arr - 1);
 	while (i < c) {
-		// ïðîâåðêà íà ñîâïàäåíèå èíäåêñà
+		j = rand() % (array.size_arr - 1);
+		// проверка на совпадение индекса
 		while (k < kol * 2) {
 			if (array.arr->operator[](k) == j) {
 				j = rand() % (array.size_arr - 1);
@@ -225,7 +226,7 @@ istream& operator >> (istream& in, SparseArray& array) {
 			k = k + 2;
 		}
 		in >> y;
-		if (y == 0)  // åñëè ïîëüçîâàòåëü ââåë 0
+		if (y == 0)  // если пользователь ввел 0
 			i--;
 		if (y != array.x) {
 			cout << "j = " << j << " " << "y = " << y << endl;
@@ -238,7 +239,7 @@ istream& operator >> (istream& in, SparseArray& array) {
 	return in;
 }
 
-//Ìåòîä ïðèìåíèìûé ê íåïóñòûì ýëåìåíòàì
+//Метод применимый к непустым элементам
 void SparseArray::foreach(func f) {
 	int i = 1;
 	while (i < c * 2) {
