@@ -2,14 +2,14 @@
 #include <iostream>
 using namespace std;
 
-static int c = rand() % (20)+1;
+static int c = 7;
 
 struct Node {
-	double data; //ýëåìåíò äàííûõ
-	Node* next; //óêàçàòåëü íà ñëåäóþùèé óçåë
-	Node* prev; //óêàçàòåëü íà ïðåäûäóùèé óçåë
+	double data; //элемент данных
+	Node* next; //указатель на следующий узел
+	Node* prev; //указатель на предыдущий узел
 
-	Node() : data(0), next(nullptr), prev(nullptr) { } //êîíñòðóêòîð
+	Node() : data(0), next(nullptr), prev(nullptr) { } //конструктор
 	Node(int data, Node* next, Node* prev) {
 		this->data = data;
 		this->next = next;
@@ -25,46 +25,46 @@ struct Node {
 
 class DoubleList {
 protected:
-	Node* first; //óêàçàòåëü íà íà÷àëî ñïèñêà
-	Node* last; //óêàçàòåëü íà êîíåö ñïèñêà
+	Node* first; //указатель на начало списка
+	Node* last; //указатель на конец списка
 public:
 	DoubleList() : first(nullptr), last(nullptr) {	}
 	~DoubleList();
 
-	void addFirst(double x); //äîáàâëåíèå ýëåìåíòà â íà÷àëî
-	void addLast(double val); //äîáàâëåíèå ýëåìåíòà â êîíåö
-	long getFirst()const; //ïîëó÷åíèå ïåðâîãî ýëåìåíòà
-	double getLast()const; //ïîëó÷åíèå ïîñëåäíåãî ýëåìåíòà
-	void delFirst(); //óäàëåíèå ïåðâîãî ýëåìåíòà
-	void delLast(); //óäàëåíèå ïîñëåäíåãî ýëåìåíòà
-	double operator [] (long ix) const; //äîñòóï ê ýëåìåíòàì
+	void addFirst(double x); //добавление элемента в начало
+	void addLast(double val); //добавление элемента в конец
+	long getFirst()const; //получение первого элемента
+	double getLast()const; //получение последнего элемента
+	void delFirst(); //удаление первого элемента
+	void delLast(); //удаление последнего элемента
+	double operator [] (long ix) const; //доступ к элементам
 	void forfunc(long ix, double y);
 
-	friend ostream& operator << (ostream& out, const DoubleList& l); //âûâîä
+	friend ostream& operator << (ostream& out, const DoubleList& l); //вывод
 };
 
 typedef double (*func)(double);
 class SparseArray : public DoubleList {
 private:
-	long size_arr; //ðàçìåð ìàññèâà
-	double x = 0; //çíà÷åíèå ïî óìîë÷àíèþ
+	long size_arr; //размер массива
+	double x = 0; //значение по умолчанию
 	DoubleList* arr;
 public:
-	SparseArray(long s = INT_MAX); //êîíñòðóêòîð
+	SparseArray(long s = INT_MAX); //конструктор
 	~SparseArray() { delete[] arr; }
 	
-	long size(); //ðàçìåð ìàññèâà
-	long notEmpty(); //êîëè÷åñòâî íåïóñòûõ ýëåìåíòîâ
-	void showElem(); //âûâîä íåïóñòûõ ýëåìåíòîâ
-	double operator [] (long ix) const; //äîñòóï ê ýëåìåíòàì
+	long size(); //размер массива
+	long notEmpty(); //количество непустых элементов
+	void showElem(); //вывод непустых элементов
+	double operator [] (long ix) const; //доступ к элементам
 	//void operator [] (long ix);
 
 	void foreach(func f);
 
-	friend ostream& operator << (ostream& out, const SparseArray& arr); //âûâîä
-	friend istream& operator >> (istream& in, SparseArray& arr); //ââîä
+	friend ostream& operator << (ostream& out, const SparseArray& arr); //вывод
+	friend istream& operator >> (istream& in, SparseArray& arr); //ввод
 };
 
-inline double pos(double x) { return abs(x); } //âñå ÷èñëà ïîëîæèòåëüíûå
-inline double neg(double x) { if (x < 0) return x; else return -x; } //âñå ÷èñëà îòðèöàòåëüíûå
-inline double st(double x) { return x * x; } //âîçâåäåíèå â êâàäðàò
+inline double pos(double x) { return abs(x); } //все числа положительные
+inline double neg(double x) { if (x < 0) return x; else return -x; } //все числа отрицательные
+inline double st(double x) { return x * x; } //возведение в квадрат
