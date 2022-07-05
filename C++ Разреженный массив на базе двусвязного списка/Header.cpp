@@ -2,7 +2,7 @@
 #include "Header.h"
 using namespace std;
 
-////Конструктор с параметром
+////ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° Г± ГЇГ Г°Г Г¬ГҐГІГ°Г®Г¬
 //DoubleList::DoubleList(int val) {
 //	Node* temp = new Node;
 //	temp->data = val;
@@ -12,10 +12,10 @@ using namespace std;
 //	last = temp;
 //}
 
-//Деструктор
+//Г„ГҐГ±ГІГ°ГіГЄГІГ®Г°
 DoubleList::~DoubleList() {
 	Node* p, * p1;
-	// удаление всех элементов списка:
+	// ГіГ¤Г Г«ГҐГ­ГЁГҐ ГўГ±ГҐГµ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г±ГЇГЁГ±ГЄГ :
 	p = first;
 	while (p)
 	{
@@ -25,23 +25,23 @@ DoubleList::~DoubleList() {
 	}
 }
 
-//Добавление узла в начало
+//Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГіГ§Г«Г  Гў Г­Г Г·Г Г«Г®
 void DoubleList::addFirst(double x) {
 	Node* buf = new Node;
-	buf->data = x;  // элемент данных = x
-	if (!first) {  // нет первого элемента - указатель на следующий - последний
+	buf->data = x;  // ГЅГ«ГҐГ¬ГҐГ­ГІ Г¤Г Г­Г­Г»Гµ = x
+	if (!first) {  // Г­ГҐГІ ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  - ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© - ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ©
 		buf->next = last;
-		last = buf;  // а последний указывает на новый массив
+		last = buf;  // Г  ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГіГЄГ Г§Г»ГўГ ГҐГІ Г­Г  Г­Г®ГўГ»Г© Г¬Г Г±Г±ГЁГў
 	}
-	else { // нужно сдвинуть указатель
-		buf->next = first; // следующий - начало массива
-		first->prev = buf; // начало предыдущего - новый массив
+	else { // Г­ГіГ¦Г­Г® Г±Г¤ГўГЁГ­ГіГІГј ГіГЄГ Г§Г ГІГҐГ«Гј
+		buf->next = first; // Г±Г«ГҐГ¤ГіГѕГ№ГЁГ© - Г­Г Г·Г Г«Г® Г¬Г Г±Г±ГЁГўГ 
+		first->prev = buf; // Г­Г Г·Г Г«Г® ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГҐГЈГ® - Г­Г®ГўГ»Г© Г¬Г Г±Г±ГЁГў
 	}
 	first = buf;
 	first->prev = NULL;
 }
 
-//Добавление узла в конец
+//Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГіГ§Г«Г  Гў ГЄГ®Г­ГҐГ¶
 void DoubleList::addLast(double x) {
 	Node* buf = new Node;
 	buf->data = x;
@@ -58,21 +58,21 @@ void DoubleList::addLast(double x) {
 	last = buf;
 }
 
-//Получение первого
+//ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЇГҐГ°ГўГ®ГЈГ®
 long DoubleList::getFirst() const {
 	if (first)
 		return first->data;
 	throw 100;
 }
 
-//Получение последнего
+//ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЇГ®Г±Г«ГҐГ¤Г­ГҐГЈГ®
 double DoubleList::getLast()const {
 	if (first)
 		return last->data;
 	throw 100;
 }
 
-//Удаление головы
+//Г“Г¤Г Г«ГҐГ­ГЁГҐ ГЈГ®Г«Г®ГўГ»
 void DoubleList::delFirst() {
 	if (first) {
 		Node* buf = first;
@@ -83,7 +83,7 @@ void DoubleList::delFirst() {
 	throw 100;
 }
 
-//Удаление хвоста
+//Г“Г¤Г Г«ГҐГ­ГЁГҐ ГµГўГ®Г±ГІГ 
 void DoubleList::delLast() {
 	if (first) {
 		Node* buf = last;
@@ -95,7 +95,7 @@ void DoubleList::delLast() {
 }
 
 
-//Доступ к элементам
+//Г„Г®Г±ГІГіГЇ ГЄ ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬
 double DoubleList::operator [] (long ix) const {
 	Node* current = first;
 	for (int i = 0; i <= ix; i++) {
@@ -116,9 +116,9 @@ void DoubleList::forfunc (long ix, double y) {
 	}
 }
 
-//Вывести все элементы
+//Г‚Г»ГўГҐГ±ГІГЁ ГўГ±ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ»
 ostream& operator << (ostream& os, const DoubleList& l) {
-	Node* p = l.first;  // указатель на начало списка 
+	Node* p = l.first;  // ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г­Г Г·Г Г«Г® Г±ГЇГЁГ±ГЄГ  
 	while (p) {
 		os << *p << " ";
 		p = p->next;
@@ -129,23 +129,23 @@ ostream& operator << (ostream& os, const DoubleList& l) {
 
 //-------------------------------------------------------------------------
 
-//Конструктор
+//ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 SparseArray::SparseArray(long s) {
 	size_arr = s;
 	arr = new DoubleList[c * 2];
 }
 
-//Размер массива
+//ГђГ Г§Г¬ГҐГ° Г¬Г Г±Г±ГЁГўГ 
 long SparseArray::size() {
 	return size_arr;
 }
 
-//Количество непустых элементов
+//ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г­ГҐГЇГіГ±ГІГ»Гµ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 long SparseArray::notEmpty() {
 	return c;
 }
 
-//Вывод непустых элементов
+//Г‚Г»ГўГ®Г¤ Г­ГҐГЇГіГ±ГІГ»Гµ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 void SparseArray::showElem() {
 	int i = 1;
 	while (i < c * 2) {
@@ -155,11 +155,11 @@ void SparseArray::showElem() {
 	cout << endl;
 }
 
-double SparseArray::operator [] (long ix) const { //доступ к элементам
+double SparseArray::operator [] (long ix) const { //Г¤Г®Г±ГІГіГЇ ГЄ ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬
 	return arr->operator[](ix);
 }
 
-//Вывод массива
+//Г‚Г»ГўГ®Г¤ Г¬Г Г±Г±ГЁГўГ 
 ostream& operator << (ostream& out, const SparseArray& array) {
 	int* ind = new int[c];
 	for(int i = 0; i < c; i++)
@@ -189,8 +189,8 @@ ostream& operator << (ostream& out, const SparseArray& array) {
 				out << "0 " << endl;
 				i++;
 			}
-		// цикл для поиска в исходном массиве значения по индексу (который мы сортировали выше)
-		int m = 0; // для записи значения
+		// Г¶ГЁГЄГ« Г¤Г«Гї ГЇГ®ГЁГ±ГЄГ  Гў ГЁГ±ГµГ®Г¤Г­Г®Г¬ Г¬Г Г±Г±ГЁГўГҐ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГ® ГЁГ­Г¤ГҐГЄГ±Гі (ГЄГ®ГІГ®Г°Г»Г© Г¬Г» Г±Г®Г°ГІГЁГ°Г®ГўГ Г«ГЁ ГўГ»ГёГҐ)
+		int m = 0; // Г¤Г«Гї Г§Г ГЇГЁГ±ГЁ Г§Г­Г Г·ГҐГ­ГЁГї
 		while (array.arr->operator[](m) != ind[k])
 			m = m + 2;
 		out << "{" << ind[k] << "->" << array.arr->operator[](m+1) << " } " << endl;
@@ -203,20 +203,20 @@ ostream& operator << (ostream& out, const SparseArray& array) {
 	return out;
 }
 
-//Ввод массива
+//Г‚ГўГ®Г¤ Г¬Г Г±Г±ГЁГўГ 
 istream& operator >> (istream& in, SparseArray& array) {
-	// i - проходим по ненулевым числам
-	// j - индекс ненулевых чисел которые мы записываем
-	// y - число которое вводим
-	// k - индекс для проверки на случай совпадения индексов
-	// kol - количество введеных индексов и значений 
+	// i - ГЇГ°Г®ГµГ®Г¤ГЁГ¬ ГЇГ® Г­ГҐГ­ГіГ«ГҐГўГ»Г¬ Г·ГЁГ±Г«Г Г¬
+	// j - ГЁГ­Г¤ГҐГЄГ± Г­ГҐГ­ГіГ«ГҐГўГ»Гµ Г·ГЁГ±ГҐГ« ГЄГ®ГІГ®Г°Г»ГҐ Г¬Г» Г§Г ГЇГЁГ±Г»ГўГ ГҐГ¬
+	// y - Г·ГЁГ±Г«Г® ГЄГ®ГІГ®Г°Г®ГҐ ГўГўГ®Г¤ГЁГ¬
+	// k - ГЁГ­Г¤ГҐГЄГ± Г¤Г«Гї ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  Г±Г«ГіГ·Г Г© Г±Г®ГўГЇГ Г¤ГҐГ­ГЁГї ГЁГ­Г¤ГҐГЄГ±Г®Гў
+	// kol - ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГўГўГҐГ¤ГҐГ­Г»Гµ ГЁГ­Г¤ГҐГЄГ±Г®Гў ГЁ Г§Г­Г Г·ГҐГ­ГЁГ© 
 	double i = 0, j, y; 
 	int k = 0, kol = 0; 
 	bool flag;
-	cout << "Введите элементы, отличные от 0:" << endl;
+	cout << "Г‚ГўГҐГ¤ГЁГІГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ», Г®ГІГ«ГЁГ·Г­Г»ГҐ Г®ГІ 0:" << endl;
 	j = rand() % (array.size_arr - 1);
 	while (i < c) {
-		// проверка на совпадение индекса
+		// ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г±Г®ГўГЇГ Г¤ГҐГ­ГЁГҐ ГЁГ­Г¤ГҐГЄГ±Г 
 		while (k < kol * 2) {
 			if (array.arr->operator[](k) == j) {
 				j = rand() % (array.size_arr - 1);
@@ -225,7 +225,7 @@ istream& operator >> (istream& in, SparseArray& array) {
 			k = k + 2;
 		}
 		in >> y;
-		if (y == 0)  // если пользователь ввел 0
+		if (y == 0)  // ГҐГ±Г«ГЁ ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гј ГўГўГҐГ« 0
 			i--;
 		if (y != array.x) {
 			cout << "j = " << j << " " << "y = " << y << endl;
@@ -238,7 +238,7 @@ istream& operator >> (istream& in, SparseArray& array) {
 	return in;
 }
 
-//Метод применимый к непустым элементам
+//ГЊГҐГІГ®Г¤ ГЇГ°ГЁГ¬ГҐГ­ГЁГ¬Г»Г© ГЄ Г­ГҐГЇГіГ±ГІГ»Г¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬
 void SparseArray::foreach(func f) {
 	int i = 1;
 	while (i < c * 2) {
