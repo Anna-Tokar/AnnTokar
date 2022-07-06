@@ -2,16 +2,6 @@
 #include "Header.h"
 using namespace std;
 
-////Конструктор с параметром
-//DoubleList::DoubleList(int val) {
-//	Node* temp = new Node;
-//	temp->data = val;
-//	temp->next = NULL;
-//	temp->prev = NULL;
-//	first = temp;
-//	last = temp;
-//}
-
 //Деструктор
 DoubleList::~DoubleList() {
 	Node* p, * p1;
@@ -69,28 +59,6 @@ long DoubleList::getFirst() const {
 double DoubleList::getLast()const {
 	if (first)
 		return last->data;
-	throw 100;
-}
-
-//Удаление головы
-void DoubleList::delFirst() {
-	if (first) {
-		Node* buf = first;
-		first = first->next;
-		first->prev = NULL;
-		delete buf;
-	}
-	throw 100;
-}
-
-//Удаление хвоста
-void DoubleList::delLast() {
-	if (first) {
-		Node* buf = last;
-		last = last->prev;
-		last->next = NULL;
-		delete buf;
-	}
 	throw 100;
 }
 
@@ -214,9 +182,9 @@ istream& operator >> (istream& in, SparseArray& array) {
 	int k = 0, kol = 0; 
 	bool flag;
 	cout << "Введите элементы (" << c << "), отличные от 0:" << endl;
-	//j = rand() % (array.size_arr - 1);
+	j = rand() % (array.size_arr - 1);
 	while (i < c) {
-		j = rand() % (array.size_arr - 1);
+		//j = rand() % (array.size_arr - 1);
 		// проверка на совпадение индекса
 		while (k < kol * 2) {
 			if (array.arr->operator[](k) == j) {
