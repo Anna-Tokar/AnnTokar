@@ -35,8 +35,6 @@ public:
 	void addLast(double val); //добавление элемента в конец
 	long getFirst()const; //получение первого элемента
 	double getLast()const; //получение последнего элемента
-	void delFirst(); //удаление первого элемента
-	void delLast(); //удаление последнего элемента
 	double operator [] (long ix) const; //доступ к элементам
 	void forfunc(long ix, double y);
 
@@ -57,7 +55,6 @@ public:
 	long notEmpty(); //количество непустых элементов
 	void showElem(); //вывод непустых элементов
 	double operator [] (long ix) const; //доступ к элементам
-	//void operator [] (long ix);
 
 	void foreach(func f);
 
